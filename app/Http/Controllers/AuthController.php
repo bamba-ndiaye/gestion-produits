@@ -21,8 +21,6 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -32,9 +30,59 @@ class AuthController extends Controller
 
         Auth::login($user);
         $request->session()->regenerate();
-
         return redirect()->route('tableau-de-bord');
+
     }
 
+      // Afficher le formulaire de connexion
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    // Vérifier les identifiants
+    public function storeLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('tableau-de-bord');
+        }
+
+        return back()
+            ->withErrors(['email' => 'Adresse e-mail ou mot de passe incorrect.'])
+            ->onlyInput('email');
+    }
+
+    // Rediriger selon le rôle
+    public function tableauDeBord()
+    {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('produits.index');
+        }
+
+        if ($user->role === 'vendeur') {
+            return redirect()->route('vendeur.accueil');
+        }
+
+        abort(403);
+    }
+
+    // Déconnecter l'utilisateur
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('connexion');
+    }
 }
 
