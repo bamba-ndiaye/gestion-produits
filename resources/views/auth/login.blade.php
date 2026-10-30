@@ -1,40 +1,39 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-</head>
-<body>
-    <h1>Se connecter</h1>
+@extends('layouts.app')
 
-    @if ($errors->any())
-        <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
+@section('titre', 'Connexion')
 
-    <form action="{{ route('connexion.store') }}" method="POST">
-        @csrf
+@section('contenu')
+    <div class="carte carte-auth">
+        <h1>Bon retour 👋</h1>
+        <p class="sous-titre">Connectez-vous pour accéder à votre espace.</p>
 
-        <div>
-            <label for="email">Adresse e-mail :</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-        </div>
+        @if ($errors->any())
+            <div class="alerte alerte-erreur">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-        <div>
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+        <form action="{{ route('connexion.store') }}" method="POST">
+            @csrf
 
-        <button type="submit">Se connecter</button>
-    </form>
+            <div class="champ">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+            </div>
 
-    <p>
-        Vous n'avez pas encore de compte ?
-        <a href="{{ route('inscription') }}">S'inscrire</a>
-    </p>
-</body>
-</html>
+            <div class="champ">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primaire">Se connecter</button>
+        </form>
+
+        <p class="lien-bas">
+            Vous n'avez pas encore de compte ?
+            <a href="{{ route('inscription') }}">S'inscrire</a>
+        </p>
+    </div>
+@endsection

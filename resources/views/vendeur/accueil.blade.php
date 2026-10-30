@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace vendeur</title>
-</head>
-<body>
-    <h1>Bonjour le vendeur !</h1>
+@extends('layouts.app')
 
-    <p>Bienvenue, {{ auth()->user()->name }}.</p>
-    <p>Votre rôle : {{ auth()->user()->role }}</p>
+@section('titre', 'Espace vendeur')
 
-    <form action="{{ route('deconnexion') }}" method="POST">
-        @csrf
-        <button type="submit">Se déconnecter</button>
-    </form>
-</body>
-</html>
+@section('contenu')
+    <div class="carte accueil">
+        <div class="emoji">🛍️</div>
+        <h1>Bonjour le vendeur !</h1>
+        <p>Bienvenue, {{ auth()->user()->name }}.</p>
+        <p>Votre rôle : <span class="badge badge-vendeur">{{ auth()->user()->role }}</span></p>
+    </div>
+@endsection
