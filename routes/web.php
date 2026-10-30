@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
 
 // TEMPORAIRE : remplacé aux étapes 5 et 6
 Route::middleware(['auth', 'role:vendeur'])->group(function () {
-    Route::get('/vendeur', fn () => 'Bonjour le vendeur ! (temporaire)')->name('vendeur.accueil');
+    Route::view('/vendeur','vendeur.accueil')->name('vendeur.accueil');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
