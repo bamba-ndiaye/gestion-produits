@@ -1,50 +1,49 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-</head>
-<body>
-    <h1>Créer un compte</h1>
+@extends('layouts.app')
 
-    @if ($errors->any())
-        <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
+@section('titre', 'Inscription')
 
-    <form action="{{ route('inscription.store') }}" method="POST">
-        @csrf
+@section('contenu')
+    <div class="carte carte-auth">
+        <h1>Créer un compte</h1>
+        <p class="sous-titre">Rejoignez la plateforme en quelques secondes.</p>
 
-        <div>
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
-        </div>
+        @if ($errors->any())
+            <div class="alerte alerte-erreur">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-        <div>
-            <label for="email">Adresse e-mail :</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-        </div>
+        <form action="{{ route('inscription.store') }}" method="POST">
+            @csrf
 
-        <div>
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+            <div class="champ">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+            </div>
 
-        <div>
-            <label for="password_confirmation">Confirmer le mot de passe :</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
-        </div>
+            <div class="champ">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+            </div>
 
-        <button type="submit">S'inscrire</button>
-    </form>
+            <div class="champ">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-    <p>
-        Vous avez déjà un compte ?
-        <a href="{{ route('connexion') }}">Se connecter</a>
-    </p>
-</body>
-</html>
+            <div class="champ">
+                <label for="password_confirmation">Confirmer le mot de passe</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" required>
+            </div>
+
+            <button type="submit" class="btn btn-primaire">S'inscrire</button>
+        </form>
+
+        <p class="lien-bas">
+            Vous avez déjà un compte ?
+            <a href="{{ route('connexion') }}">Se connecter</a>
+        </p>
+    </div>
+@endsection

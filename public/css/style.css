@@ -1,0 +1,138 @@
+/* ===== Couleurs (modifie-les ici pour changer tout le site) ===== */
+:root {
+    --primaire: #4f46e5;
+    --primaire-fonce: #4338ca;
+    --secondaire: #0ea5e9;
+    --fond: #f1f5f9;
+    --carte: #ffffff;
+    --texte: #1e293b;
+    --texte-doux: #64748b;
+    --bordure: #e2e8f0;
+    --succes: #16a34a;
+    --danger: #dc2626;
+    --attention: #f59e0b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 50%, #e0f2fe 100%);
+    background-attachment: fixed;
+    color: var(--texte);
+    min-height: 100vh;
+}
+
+/* ===== Barre de navigation ===== */
+.navbar {
+    background: linear-gradient(90deg, var(--primaire), var(--secondaire));
+    color: #fff;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+.logo { font-size: 1.2rem; font-weight: 700; }
+.navbar-droite { display: flex; align-items: center; gap: 12px; }
+
+/* ===== Conteneur et cartes ===== */
+.conteneur { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+
+.carte {
+    background: var(--carte);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+.carte-auth { max-width: 440px; margin: 40px auto; }
+.carte h1 { margin-bottom: 8px; color: var(--primaire); }
+.carte h2 { margin: 24px 0 16px; }
+.sous-titre { color: var(--texte-doux); margin-bottom: 24px; }
+
+/* ===== Formulaires ===== */
+.champ { margin-bottom: 18px; }
+.champ label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+.champ input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--bordure);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.champ input:focus {
+    outline: none;
+    border-color: var(--primaire);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+}
+
+/* ===== Boutons ===== */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primaire { background: var(--primaire); color: #fff; width: 100%; }
+.btn-primaire:hover { background: var(--primaire-fonce); }
+.btn-secondaire {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+}
+.btn-secondaire:hover { background: rgba(255, 255, 255, 0.35); }
+
+/* ===== Alertes ===== */
+.alerte { padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-size: 0.95rem; }
+.alerte-erreur {
+    background: #fef2f2;
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* ===== Liens ===== */
+.lien-bas { text-align: center; margin-top: 20px; color: var(--texte-doux); }
+a { color: var(--primaire); font-weight: 600; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Badges de rôle ===== */
+.badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.badge-admin { background: #fde68a; color: #92400e; }
+.badge-vendeur { background: #bbf7d0; color: #166534; }
+
+/* ===== Tableau ===== */
+.tableau-conteneur { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+    background: var(--primaire);
+    color: #fff;
+    text-align: left;
+    padding: 14px 16px;
+}
+thead th:first-child { border-radius: 10px 0 0 0; }
+thead th:last-child { border-radius: 0 10px 0 0; }
+tbody td { padding: 14px 16px; border-bottom: 1px solid var(--bordure); }
+tbody tr:hover { background: #eef2ff; }
+
+.stock { font-weight: 700; color: var(--succes); }
+.stock-bas { color: var(--attention); }
+
+/* ===== Page vendeur ===== */
+.accueil { text-align: center; }
+.accueil .emoji { font-size: 4rem; }
+.accueil p { margin-top: 10px; color: var(--texte-doux); }
