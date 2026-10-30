@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,5 +26,5 @@ Route::middleware(['auth', 'role:vendeur'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/produits', fn () => 'Liste des produits (temporaire)')->name('produits.index');
+    Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
 });
